@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binär Suche</title>
+    <style>
+        body{
+            min-height: 50vh;
+        }
+        .center{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        #userInput {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #result{
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="center">Binär Suche</h1>
+    <div class="center">
+        <p>Such Nummer: <input type="number" id="userInput"> </p>
+        <p id="result"></p>
+    </div>
+    <script>
+        const sortedArray = Array.from({ length: 100 }, (_, index) => index + 1);
+        const resultElement = document.getElementById("result");
+        const inputElement = document.getElementById('userInput');
+        inputElement.addEventListener("keydown", function(e){
+            if(e.key === "Enter"){
+                resultElement.innerHTML ="";
+                binarySearch();
+            }
+        });
+
+        function binarySearch() {
+            
+            const searchValue = inputElement.value;
+        
+
+            var indexStart = 0;
+            var indexEnd = sortedArray.length - 1 ;
+            var isFound = false;
+
+            var i = 0;
+            if(searchValue > sortedArray[indexEnd]){
+                resultElement.innerHTML += "außerhalb des Array-Bereichs<br>";
+                resultElement.style.color = "purple";
+            }else{
+
+                while(i < indexEnd && !isFound && searchValue != ""){
+                var indexMiddle = Math.round((indexStart + indexEnd) /2);
+                if(sortedArray[indexMiddle] == searchValue){
+                    isFound = true;
+                    resultElement.innerHTML += "Gefunden <br>";
+                    resultElement.style.color = "green";
+                    break;
+                }
+                else if(sortedArray[indexMiddle] > searchValue){
+                    indexEnd = indexMiddle - 1;
+                }else{
+                    indexStart = indexMiddle + 1;
+                }
+                resultElement.innerHTML += "versuch: "+ (i + 1) + " nicht gefunden <br>";
+                resultElement.style.color = "red";
+                i++;
+                console.log(indexEnd);
+                console.log(indexStart);
+                console.log(indexMiddle);
+
+            
+            }
+            }
+        }
+
+    </script>
+</body>
+</html>
