@@ -53,7 +53,7 @@
             var isFound = false;
 
             var i = 0;
-            if(searchValue > sortedArray[indexEnd]){
+            if(searchValue > sortedArray[indexEnd] && searchValue < sortedArray[indexStart]){
                 resultElement.innerHTML += "außerhalb des Array-Bereichs<br>";
                 resultElement.style.color = "purple";
             }else{
