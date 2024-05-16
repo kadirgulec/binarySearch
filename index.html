@@ -38,7 +38,10 @@
         <p id="result"></p>
     </div>
     <script>
-        const sortedArray = Array.from({ length: 100 }, (_, index) => index + 1);
+        const randomArray = Array.from({ length: 100 }, () => Math.floor(Math.random() * 1000));
+        const sortedArray = randomArray.sort((a, b) => a - b);
+        console.log(sortedArray);
+        // const sortedArray = Array.from({ length: 100 }, (_, index) => index + 1);
         const resultElement = document.getElementById("result");
         const inputElement = document.getElementById('userInput');
         inputElement.addEventListener("keydown", function (e) {
@@ -58,13 +61,17 @@
             var isFound = false;
 
             var i = 0;
-            if (searchValue > sortedArray[indexEnd] && searchValue < sortedArray[indexStart]) {
+            if (searchValue > sortedArray[indexEnd] || searchValue < sortedArray[indexStart]) {
                 resultElement.innerHTML += "außerhalb des Array-Bereichs<br>";
                 resultElement.style.color = "purple";
+                console.log("if");
             } else {
 
-                while (!isFound && searchValue != "") {
+                while (searchValue <= sortedArray[indexEnd] && searchValue >= sortedArray[indexStart] && !isFound && searchValue != "") {
                     var indexMiddle = Math.round((indexStart + indexEnd) / 2);
+                    console.log("End: " + indexEnd);
+                    console.log("start: " + indexStart);
+                    console.log("middle: " + indexMiddle);
                     if (sortedArray[indexMiddle] == searchValue) {
                         isFound = true;
                         resultElement.innerHTML += "Gefunden <br>";
@@ -79,9 +86,7 @@
                     resultElement.innerHTML += "versuch: " + (i + 1) + " nicht gefunden <br>";
                     resultElement.style.color = "red";
                     i++;
-                    console.log("End: " + indexEnd);
-                    console.log("start: " + indexStart);
-                    console.log("middle: " + indexMiddle);
+                    
                 }
             }
         }
