@@ -58,7 +58,7 @@
                 resultElement.style.color = "purple";
             }else{
 
-                while(i < indexEnd && !isFound && searchValue != ""){
+                while(!isFound && searchValue != ""){
                 var indexMiddle = Math.round((indexStart + indexEnd) /2);
                 if(sortedArray[indexMiddle] == searchValue){
                     isFound = true;
@@ -74,9 +74,9 @@
                 resultElement.innerHTML += "versuch: "+ (i + 1) + " nicht gefunden <br>";
                 resultElement.style.color = "red";
                 i++;
-                console.log(indexEnd);
-                console.log(indexStart);
-                console.log(indexMiddle);
+                console.log("End: " + indexEnd);
+                console.log("start: " + indexStart);
+                console.log("middle: " + indexMiddle);
 
             
             }
